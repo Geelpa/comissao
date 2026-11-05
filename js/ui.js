@@ -10,6 +10,7 @@ function atualizarPainelResumo(dados) {
 
     const resTotalAtivacoes = document.getElementById('resTotalAtivacoes');
     const resTotalVendas = document.getElementById('resTotalVendas');
+    const resQuantidadeUpgrades = document.getElementById('resQuantidadeUpgrades');
     const resTotalUpgrades = document.getElementById('resTotalUpgrades');
     const resComissao = document.getElementById('resComissao');
 
@@ -18,6 +19,9 @@ function atualizarPainelResumo(dados) {
     }
     if (resTotalVendas) {
         resTotalVendas.innerText = formatarMoeda(resumo.totalValorVendas);
+    }
+    if (resQuantidadeUpgrades) {
+        resQuantidadeUpgrades.innerText = dados.upgrades?.length || 0;
     }
     if (resTotalUpgrades) {
         resTotalUpgrades.innerText = formatarMoeda(resumo.totalUpgrades);

@@ -254,7 +254,9 @@ function calcularRelatorios() {
     for (const [indice, pessoa] of dadosExtraidos.pessoas.entries()) {
         const configVendedor = obterConfigVendedor(pessoa.nome);
         const vendas = pessoa.vendas;
-        const upgrades = pessoa.upgrades.filter(upgrade => Number(upgrade.diferenca) > 0);
+        const upgrades = pessoa.upgrades.filter(upgrade =>
+            /upgrade/i.test(upgrade.tipo || upgrade.tipo_alteracao || '')
+        );
         const metaInput = configVendedor ? document.getElementById(`metaPessoa${indice}`) : null;
         const valorMeta = configVendedor ? Number(metaInput?.value) : vendas.length;
 

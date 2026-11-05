@@ -150,19 +150,24 @@ function gerarHTMLRelatorio(dadosExportacao, modoImpressao = false) {
                     <p style="margin: 4px 0 8px; font-size: ${modoImpressao ? '14px' : '10.5px'};">
                         <strong>${tipoPessoa} do relatório:</strong> ${nomePessoa}
                     </p>
-                    <table style="width: 100%; font-size: ${fonteBase}; border-collapse: collapse;">
+                    <table style="width: 100%; font-size: ${fonteBase}; border-collapse: separate; border-spacing: 8px 0; margin: 0 -8px;">
                         <tr>
-                            <td style="width: 50%; vertical-align: top;">
+                            <td style="width: 50%; vertical-align: top; padding: 8px; border: 1px solid ${cores.borda};">
+                                <strong style="display: block; margin-bottom: 6px; color: ${cores.destaque}; text-transform: uppercase;">Vendas</strong>
                                 <p style="margin: 4px 0;"><strong>${funcionario ? 'Meta Fixa (100%)' : 'Meta Padrão (100%)'}:</strong> ${resumo.metaAtivacoes || 0} ${funcionario ? 'vendas' : 'ativações'}</p>
                                 <p style="margin: 4px 0;"><strong>${funcionario ? 'Meta Atingida Informada' : 'Ativações Realizadas'}:</strong> ${funcionario ? `${resumo.metaAtingidaFuncionario || 0} vendas` : `${resumo.totalAtivacoes || 0} contratos`}</p>
                                 <p style="margin: 4px 0;"><strong>Percentual de Alcance:</strong> ${resumo.percentualAlcance || 0}%</p>
-                            </td>
-                            <td style="width: 50%; vertical-align: top; text-align: right;">
                                 ${funcionario
                                     ? `<p style="margin: 4px 0;"><strong>Comissão por venda:</strong> ${formatarMoeda(resumo.valorPorVenda)}</p>
                                        <p style="margin: 4px 0;"><strong>Vendas consideradas:</strong> ${resumo.vendasComissionaveis || 0}</p>`
                                     : `<p style="margin: 4px 0;"><strong>Faixa Aplicada:</strong> ${resumo.porcentagemUtilizada || 0}% de comissão</p>`}
                                 <p style="margin: 4px 0;"><strong>Comissão Vendas:</strong> ${formatarMoeda(resumo.comissaoVendas)}</p>
+                            </td>
+                            <td style="width: 50%; vertical-align: top; padding: 8px; border: 1px solid ${cores.borda};">
+                                <strong style="display: block; margin-bottom: 6px; color: ${cores.destaque}; text-transform: uppercase;">Upgrades</strong>
+                                ${upgrades.length
+                                    ? `<p style="margin: 4px 0;"><strong>Quantidade de upgrades:</strong> ${upgrades.length}</p>`
+                                    : `<p style="margin: 4px 0;">Nenhum upgrade no período.</p>`}
                                 <p style="margin: 4px 0;"><strong>Comissão Upgrades:</strong> ${formatarMoeda(resumo.totalUpgrades)}</p>
                             </td>
                         </tr>
